@@ -13,7 +13,7 @@ a &&= b;
 a && (a = b);
 
 // Eventually....
-// "Nullish Coalescing Equals"
+// "QQ Equals"
 a ??= b;
 a ?? (a = b);
 ```
