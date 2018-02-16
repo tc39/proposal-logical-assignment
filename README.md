@@ -21,7 +21,7 @@ a ?? (a = b);
 Motivation
 ----------
 
-Conveinence operators, inspired by [Ruby's](https://docs.ruby-lang.org/en/2.5.0/syntax/assignment_rdoc.html#label-Abbreviated+Assignment). We already have a dozen [mathematical assignment operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators), but we don't ones for the often used logical operators.
+Conveinence operators, inspired by [Ruby's](https://docs.ruby-lang.org/en/2.5.0/syntax/assignment_rdoc.html#label-Abbreviated+Assignment). We already have a dozen [mathematical assignment operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators), but we don't have ones for the often used logical operators.
 
 ```js
 function example(a = b) {
@@ -92,4 +92,4 @@ Related
 
 - [Ruby's logical operators](https://docs.ruby-lang.org/en/2.5.0/syntax/assignment_rdoc.html#label-Abbreviated+Assignment)
   - [Explainer on no-set semantics](http://www.rubyinside.com/what-rubys-double-pipe-or-equals-really-does-5488.html)
-- My very first [Babel PR](https://github.com/babel/babel/pull/516) (back when it was still 6to5). 😄
+- My very first [Babel PR](https://github.com/babel/babel/pull/516) (back when it was still [6to5](https://github.com/babel/babel/tree/ecd85f53b4764ada862537aa767699814f1f1fe2)). 😄
