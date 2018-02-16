@@ -91,4 +91,5 @@ Related
 -------
 
 - [Ruby's logical operators](https://docs.ruby-lang.org/en/2.5.0/syntax/assignment_rdoc.html#label-Abbreviated+Assignment)
+  - [Explainer on no-set semantics](http://www.rubyinside.com/what-rubys-double-pipe-or-equals-really-does-5488.html)
 - My very first [Babel PR](https://github.com/babel/babel/pull/516) (back when it was still 6to5). 😄
