@@ -4,7 +4,7 @@ proposal-logical-assignment
 A Stage 0 proposal to combine Logical Operators and Assignment Expressions:
 
 ```js
-// "Or Or Equals" (or, the Mallot operator :wink:)
+// "Or Or Equals" (or, the Mallet operator :wink:)
 a ||= b;
 a || (a = b);
 
