@@ -21,7 +21,7 @@ a ?? (a = b);
 Motivation
 ----------
 
-Conveinence operators, inspired by [Ruby's](https://docs.ruby-lang.org/en/2.5.0/syntax/assignment_rdoc.html#label-Abbreviated+Assignment). We already have a dozen [mathematical assignment operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators), but we don't have ones for the often used logical operators.
+Convenience operators, inspired by [Ruby's](https://docs.ruby-lang.org/en/2.5.0/syntax/assignment_rdoc.html#label-Abbreviated+Assignment). We already have a dozen [mathematical assignment operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators), but we don't have ones for the often used logical operators.
 
 ```js
 function example(a = b) {
@@ -57,7 +57,7 @@ With this, we get terseness and we don't have to suffer from setter calls.
 Semantics
 ---------
 
-The logical assignment operators function a bit differntly than their mathematical assignment friends. While math assignment operators _always_ trigger a set operation, logical assignment embraces their short-ciruiting semantics to avoid it when possible.
+The logical assignment operators function a bit differently than their mathematical assignment friends. While math assignment operators _always_ trigger a set operation, logical assignment embraces their short-circuiting semantics to avoid it when possible.
 
 ```js
 let x = 0;
