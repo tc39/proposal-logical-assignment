@@ -1,7 +1,7 @@
 proposal-logical-assignment
 ===========================
 
-A Stage 0 proposal to combine Logical Operators and Assignment Expressions:
+A Stage 1 proposal to combine Logical Operators and Assignment Expressions:
 
 ```js
 // "Or Or Equals" (or, the Mallet operator :wink:)
