@@ -26,7 +26,7 @@ Convenience operators, inspired by [Ruby's](https://docs.ruby-lang.org/en/2.5.0/
 ```js
 function example(a = b) {
   // Default assignment only works for `undefined`.
-  // But I want any falsey to deafult
+  // But I want any falsey to default
   if (!a) {
     a = b;
   }
