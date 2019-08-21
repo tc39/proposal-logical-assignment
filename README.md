@@ -87,6 +87,13 @@ obj.x &&= 3;
 assert.equal(obj.x, 3);
 ```
 
+In most cases, the fact that the set operation is short-circuited has no observable impact beyond performance. But when it has side effects, it is often desirable to avoid it when appropriate. In the following example, if the `.innerHTML` setter was triggered uselessly, it could result in the loss of state (such as focus) that is not serialized in HTML:
+
+```js
+document.getElementById('previewZone').innerHTML ||= '<i>Nothing to preview</i>';
+```
+
+
 Related
 -------
 
