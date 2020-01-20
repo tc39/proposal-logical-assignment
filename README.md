@@ -18,8 +18,8 @@ a ?? (a = b);
 
 ## Champions
 
-- Justin Ridgewell (@jridgewell)
-- Hemanth HM (@hemanth)
+- Justin Ridgewell ([@jridgewell](https://github.com/jridgewell/))
+- Hemanth HM ([@hemanth](https://github.com/hemanth/))
 
 ## Status
 
