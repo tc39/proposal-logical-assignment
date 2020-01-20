@@ -1,6 +1,6 @@
 # proposal-logical-assignment
 
-A Stage 1 proposal to combine Logical Operators and Assignment Expressions:
+A proposal to combine Logical Operators and Assignment Expressions:
 
 ```js
 // "Or Or Equals" (or, the Mallet operator :wink:)
@@ -20,6 +20,10 @@ a ?? (a = b);
 
 - Justin Ridgewell (@jridgewell)
 - Hemanth HM (@hemanth)
+
+## Status
+
+Current [Stage](https://tc39.es/process-document/): 1
 
 ## Motivation
 
