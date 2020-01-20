@@ -118,6 +118,7 @@ HTML:
 document.getElementById('previewZone').innerHTML ||= '<i>Nothing to preview</i>';
 ```
 
+See discussion of short-circuit semantics in [#3](https://github.com/tc39/proposal-logical-assignment/issues/3). It also highlights differences already present in mathematical assignment operators in code like `obj.deep[key++] += 1` vs `obj.deep[key] = obj.deep[key++] + 1`.
 
 ## Related
 
