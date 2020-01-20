@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "name": "proposals-logical-assignment",
+  "description": "A proposal to combine Logical Operators and Assignment Expressions",
+  "scripts": {
+    "build": "ecmarkup spec.emu index.html"
+  },
+  "homepage": "https://github.com/tc39/proposal-logical-assignment#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tc39/proposal-logical-assignment.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "ecmarkup": "^3.11.5"
+  }
+}

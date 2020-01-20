@@ -1,5 +1,4 @@
-proposal-logical-assignment
-===========================
+# proposal-logical-assignment
 
 A Stage 1 proposal to combine Logical Operators and Assignment Expressions:
 
@@ -12,52 +11,69 @@ a || (a = b);
 a &&= b;
 a && (a = b);
 
-// Eventually....
 // "QQ Equals"
 a ??= b;
 a ?? (a = b);
 ```
 
-Motivation
-----------
+## Champions
 
-Convenience operators, inspired by [Ruby's](https://docs.ruby-lang.org/en/2.5.0/syntax/assignment_rdoc.html#label-Abbreviated+Assignment). We already have a dozen [mathematical assignment operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators), but we don't have ones for the often used logical operators.
+- Justin Ridgewell (@jridgewell)
+- Hemanth HM (@hemanth)
+
+## Motivation
+
+Convenience operators, inspired by
+[Ruby's](https://docs.ruby-lang.org/en/2.5.0/syntax/assignment_rdoc.html#label-Abbreviated+Assignment).
+We already have a dozen [mathematical assignment
+operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Assignment_Operators),
+but we don't have ones for the often used logical operators.
 
 ```js
-function example(a = b) {
-  // Default assignment only works for `undefined`.
-  // But I want any falsey to default
+function example(a) {
+  // Default `a` to "foo"
   if (!a) {
-    a = b;
-  }
-}
-
-function numeric(a = b) {
-  // Maybe I want to keep numeric 0, but default nullish
-  if (a == null) {
-    a = b;
+    a = 'foo';
   }
 }
 ```
 
-If statements work, but terseness would be nice.
+If statements work, but terseness would be nice. Especially when dealing
+with deep property assignment:
 
 ```js
-function example(a = b) {
-  // Ok, but it triggers setter.
-  a = a || b;
+function example(opts) {
+  // Ok, but could trigger setter.
+  opts.foo = opts.foo ?? 'bar'
 
-  // No setter, but sometimes flagged as a lint error!
-  a || (a = b);
+  // No setter, but 'feels wrong' to write.
+  opts.baz ?? (opts.baz = 'qux');
 }
+
+example({ foo: 'foo' })
 ```
 
-With this, we get terseness and we don't have to suffer from setter calls.
+With this proposal, we get terseness and we don't have to suffer from
+setter calls:
 
-Semantics
----------
+```js
+function example(opts) {
+  // Setters are not needlessly called.
+  opts.foo ??= 'bar'
 
-The logical assignment operators function a bit differently than their mathematical assignment friends. While math assignment operators _always_ trigger a set operation, logical assignment embraces their short-circuiting semantics to avoid it when possible.
+  // No repetition of `opts.baz`.
+  opts.baz ??= 'qux';
+}
+
+example({ foo: 'foo' })
+```
+
+## Semantics
+
+The logical assignment operators function a bit differently than their
+mathematical assignment friends. While math assignment operators
+_always_ trigger a set operation, logical assignment embraces their
+short-circuiting semantics to avoid it when possible.
 
 ```js
 let x = 0;
@@ -87,15 +103,19 @@ obj.x &&= 3;
 assert.equal(obj.x, 3);
 ```
 
-In most cases, the fact that the set operation is short-circuited has no observable impact beyond performance. But when it has side effects, it is often desirable to avoid it when appropriate. In the following example, if the `.innerHTML` setter was triggered uselessly, it could result in the loss of state (such as focus) that is not serialized in HTML:
+In most cases, the fact that the set operation is short-circuited has no
+observable impact beyond performance. But when it has side effects, it
+is often desirable to avoid it when appropriate. In the following
+example, if the `.innerHTML` setter was triggered uselessly, it could
+result in the loss of state (such as focus) that is not serialized in
+HTML:
 
 ```js
 document.getElementById('previewZone').innerHTML ||= '<i>Nothing to preview</i>';
 ```
 
 
-Related
--------
+## Related
 
 - [Ruby's logical operators](https://docs.ruby-lang.org/en/2.5.0/syntax/assignment_rdoc.html#label-Abbreviated+Assignment)
   - [Explainer on no-set semantics](http://www.rubyinside.com/what-rubys-double-pipe-or-equals-really-does-5488.html)
