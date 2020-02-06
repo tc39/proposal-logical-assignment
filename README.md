@@ -21,6 +21,11 @@ a ?? (a = b);
 - Justin Ridgewell ([@jridgewell](https://github.com/jridgewell/))
 - Hemanth HM ([@hemanth](https://github.com/hemanth/))
 
+### Reviewers for Stage 3
+
+- [ ] Kevin Gibbons ([@bakkot](https://github.com/bakkot))
+- [ ] Daniel Rosenwasser ([@DanielRosenwasser](https://github.com/DanielRosenwasser))
+
 ## Status
 
 Current [Stage](https://tc39.es/process-document/): 2
