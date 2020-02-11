@@ -130,4 +130,5 @@ See discussion of short-circuit semantics in [#3](https://github.com/tc39/propos
 - [Ruby's logical operators](https://docs.ruby-lang.org/en/2.5.0/syntax/assignment_rdoc.html#label-Abbreviated+Assignment)
   - [Explainer on no-set semantics](http://www.rubyinside.com/what-rubys-double-pipe-or-equals-really-does-5488.html)
 - [CoffeeScript](http://coffeescript.org/#try:a%20%3D%201%0Ab%20%3D%202%0A%0A%0A%23%20%22Or%20Or%20Equals%22%20(or%2C%20the%20Mallet%20operator%20%3Awink%3A)%0Aa%20%7C%7C%3D%20b%3B%0Aa%20%7C%7C%20(a%20%3D%20b)%3B%0A%0A%23%20%22And%20And%20Equals%22%0Aa%20%26%26%3D%20b%3B%0Aa%20%26%26%20(a%20%3D%20b)%3B%0A%0A%23%20Eventually....%0A%23%20%22QQ%20Equals%22%0A%23a%20%3F%3F%3D%20b%3B%0A%23a%20%3F%3F%20(a%20%3D%20b)%3B%0A)
+- [C#'s null coalescing assignment](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-8.0/null-coalescing-assignment#detailed-design)
 - My very first [Babel PR](https://github.com/babel/babel/pull/516) (back when it was still [6to5](https://github.com/babel/babel/tree/ecd85f53b4764ada862537aa767699814f1f1fe2)). 😄
