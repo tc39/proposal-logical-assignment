@@ -6,7 +6,7 @@
 <pre class="metadata">
 title: Logical Assignment Operators
 status: proposal
-stage: 1
+stage: 2
 contributors: Justin Ridgewell
 location: https://tc39.es/proposal-logical-assignment
 </pre>
@@ -174,6 +174,9 @@ location: https://tc39.es/proposal-logical-assignment
         1. Perform ? DestructuringAssignmentEvaluation of _assignmentPattern_ using _rval_ as the argument.
         1. Return _rval_.
       </emu-alg>
+      <emu-note>
+        <p>When this expression occurs within strict mode code, it is a runtime error if _lref_ in step 1.e is an unresolvable reference. If it is, a *ReferenceError* exception is thrown. The |LeftHandSideExpression| also may not be a reference to a data property with the attribute value { [[Writable]]: *false* }, to an accessor property with the attribute value { [[Set]]: *undefined* }, nor to a non-existent property of an object for which the IsExtensible predicate returns the value *false*. In these cases a *TypeError* exception is thrown.</p>
+      </emu-note>
 
       <emu-grammar>AssignmentExpression : LeftHandSideExpression AssignmentOperator AssignmentExpression</emu-grammar>
       <emu-alg>
@@ -187,7 +190,7 @@ location: https://tc39.es/proposal-logical-assignment
         1. Return _r_.
       </emu-alg>
       <emu-note>
-        <p>When an assignment occurs within strict mode code, it is a runtime error if _lref_ in step 1.f of the first algorithm or step 7 of the second algorithm it is an unresolvable reference. If it is, a *ReferenceError* exception is thrown. The |LeftHandSideExpression| also may not be a reference to a data property with the attribute value { [[Writable]]: *false* }, to an accessor property with the attribute value { [[Set]]: *undefined* }, nor to a non-existent property of an object for which the IsExtensible predicate returns the value *false*. In these cases a *TypeError* exception is thrown.</p>
+        <p>When this expression occurs within strict mode code, it is a runtime error if _lref_ in step 7 is an unresolvable reference. If it is, a *ReferenceError* exception is thrown. The |LeftHandSideExpression| also may not be a reference to a data property with the attribute value { [[Writable]]: *false* }, to an accessor property with the attribute value { [[Set]]: *undefined* }, nor to a non-existent property of an object for which the IsExtensible predicate returns the value *false*. In these cases a *TypeError* exception is thrown.</p>
       </emu-note>
 
       <ins class="block">
@@ -203,7 +206,7 @@ location: https://tc39.es/proposal-logical-assignment
         1. Return _rval_.
       </emu-alg>
       <emu-note>
-        <p>When an assignment occurs within strict mode code, it is a runtime error if _lref_ in step 1.f of the first algorithm or step 7 of the second algorithm it is an unresolvable reference. If it is, a *ReferenceError* exception is thrown. The |LeftHandSideExpression| also may not be a reference to a data property with the attribute value { [[Writable]]: *false* }, to an accessor property with the attribute value { [[Set]]: *undefined* }, nor to a non-existent property of an object for which the IsExtensible predicate returns the value *false*. In these cases a *TypeError* exception is thrown.</p>
+        <p>When this expression occurs within strict mode code, it is a runtime error if _lref_ in step 7 is an unresolvable reference. If it is, a *ReferenceError* exception is thrown. If step 7 is reached, the |LeftHandSideExpression| also may not be a reference to a data property with the attribute value { [[Writable]]: *false* }, to an accessor property with the attribute value { [[Set]]: *undefined* }, nor to a non-existent property of an object for which the IsExtensible predicate returns the value *false*. In these cases a *TypeError* exception is thrown.</p>
       </emu-note>
       </ins>
 
@@ -220,7 +223,7 @@ location: https://tc39.es/proposal-logical-assignment
         1. Return _rval_.
       </emu-alg>
       <emu-note>
-        <p>When an assignment occurs within strict mode code, it is a runtime error if _lref_ in step 1.f of the first algorithm or step 7 of the second algorithm it is an unresolvable reference. If it is, a *ReferenceError* exception is thrown. The |LeftHandSideExpression| also may not be a reference to a data property with the attribute value { [[Writable]]: *false* }, to an accessor property with the attribute value { [[Set]]: *undefined* }, nor to a non-existent property of an object for which the IsExtensible predicate returns the value *false*. In these cases a *TypeError* exception is thrown.</p>
+        <p>When this expression occurs within strict mode code, it is a runtime error if _lref_ in step 7 is an unresolvable reference. If it is, a *ReferenceError* exception is thrown. If step 7 is reached, the |LeftHandSideExpression| also may not be a reference to a data property with the attribute value { [[Writable]]: *false* }, to an accessor property with the attribute value { [[Set]]: *undefined* }, nor to a non-existent property of an object for which the IsExtensible predicate returns the value *false*. In these cases a *TypeError* exception is thrown.</p>
       </emu-note>
       </ins>
 
@@ -237,7 +240,7 @@ location: https://tc39.es/proposal-logical-assignment
         1. Otherwise, return _lval_.
       </emu-alg>
       <emu-note>
-        <p>When an assignment occurs within strict mode code, it is a runtime error if _lref_ in step 1.f of the first algorithm or step 7 of the second algorithm it is an unresolvable reference. If it is, a *ReferenceError* exception is thrown. The |LeftHandSideExpression| also may not be a reference to a data property with the attribute value { [[Writable]]: *false* }, to an accessor property with the attribute value { [[Set]]: *undefined* }, nor to a non-existent property of an object for which the IsExtensible predicate returns the value *false*. In these cases a *TypeError* exception is thrown.</p>
+        <p>When this expression occurs within strict mode code, it is a runtime error if _lref_ in step 3.c is an unresolvable reference. If it is, a *ReferenceError* exception is thrown. If step 3.c is reached, the |LeftHandSideExpression| also may not be a reference to a data property with the attribute value { [[Writable]]: *false* }, to an accessor property with the attribute value { [[Set]]: *undefined* }, nor to a non-existent property of an object for which the IsExtensible predicate returns the value *false*. In these cases a *TypeError* exception is thrown.</p>
       </emu-note>
       </ins>
     </emu-clause>
