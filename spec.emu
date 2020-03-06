@@ -25,6 +25,11 @@ location: https://tc39.es/proposal-logical-assignment
   <h1>Punctuators (<a href="https://tc39.github.io/ecma262/#sec-punctuators">11.7</a>)</h1>
   <h2>Syntax</h2>
   <emu-grammar type="definition">
+    Punctuator ::
+      <ins>LogicalAssignmentPunctuator</ins>
+      OptionalChainingPunctuator
+      OtherPunctuator
+
     <ins class="block">
     LogicalAssignmentPunctuator :: one of
       `&amp;&amp;=` `||=` `??=`
@@ -32,7 +37,6 @@ location: https://tc39.es/proposal-logical-assignment
 
     OptionalChainingPunctuator ::
       `?.` [lookahead &lt;! DecimalDigit]
-      <del>OtherPunctuator</del>
 
     OtherPunctuator :: one of
       `{` `(` `)` `[` `]`
@@ -48,11 +52,6 @@ location: https://tc39.es/proposal-logical-assignment
       `?` `:`
       `=` `+=` `-=` `*=` `%=` `**=` `&lt;&lt;=` `&gt;&gt;=` `&gt;&gt;&gt;=` `&amp;=` `|=` `^=`
       `=&gt;`
-
-    Punctuator ::
-      <ins>LogicalAssignmentPunctuator</ins>
-      OptionalChainingPunctuator
-      OtherPunctuator
 
     DivPunctuator ::
       `/`
