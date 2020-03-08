@@ -16,6 +16,10 @@ a ??= b;
 a ?? (a = b);
 ```
 
+## Status
+
+Current [Stage](https://tc39.es/process-document/): 2
+
 ## Champions
 
 - Justin Ridgewell ([@jridgewell](https://github.com/jridgewell/))
@@ -25,10 +29,6 @@ a ?? (a = b);
 
 - [x] Kevin Gibbons ([@bakkot](https://github.com/bakkot), [#15](https://github.com/tc39/proposal-logical-assignment/issues/15))
 - [ ] Daniel Rosenwasser ([@DanielRosenwasser](https://github.com/DanielRosenwasser))
-
-## Status
-
-Current [Stage](https://tc39.es/process-document/): 2
 
 ## Motivation
 
