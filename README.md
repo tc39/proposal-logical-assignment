@@ -23,7 +23,7 @@ a ?? (a = b);
 
 ### Reviewers for Stage 3
 
-- [ ] Kevin Gibbons ([@bakkot](https://github.com/bakkot))
+- [x] Kevin Gibbons ([@bakkot](https://github.com/bakkot), [#15](https://github.com/tc39/proposal-logical-assignment/issues/15))
 - [ ] Daniel Rosenwasser ([@DanielRosenwasser](https://github.com/DanielRosenwasser))
 
 ## Status
