@@ -19,6 +19,9 @@ location: https://tc39.es/proposal-logical-assignment
   <p>
     Each Logical Assignment operator embraces the short-circuiting semantics of the respective <a href="https://tc39.es/ecma262/#sec-binary-logical-operators">Binary Logical operator</a>. If the operator short circuits, then the [[Set]] operation is skipped.
   </p>
+  <p>
+    The new `LogicalAssignmentPunctuator` production defined in <a href="#sec-punctuators">Punctuators</a> section is used only to highlight the new additions. When merged with the main ecma262 spec, the new punctuators should just be added to `OtherPunctuator`.
+  </p>
 </emu-clause>
 
 <emu-clause id="sec-punctuators">
