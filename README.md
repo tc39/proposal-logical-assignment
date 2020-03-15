@@ -28,7 +28,7 @@ Current [Stage](https://tc39.es/process-document/): 2
 ### Reviewers for Stage 3
 
 - [x] Kevin Gibbons ([@bakkot](https://github.com/bakkot), [#15](https://github.com/tc39/proposal-logical-assignment/issues/15))
-- [ ] Daniel Rosenwasser ([@DanielRosenwasser](https://github.com/DanielRosenwasser))
+- [x] Daniel Rosenwasser ([@DanielRosenwasser](https://github.com/DanielRosenwasser), [#20](https://github.com/tc39/proposal-logical-assignment/issues/20))
 
 ## Motivation
 
