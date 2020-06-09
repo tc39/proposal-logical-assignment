@@ -67,179 +67,179 @@ location: https://tc39.es/proposal-logical-assignment
 
 <emu-clause id="sec-assignment-operators">
   <h1>Assignment Operators (<a href="https://tc39.es/ecma262/#sec-assignment-operators">12.15</a>)</h1>
-    <h2>Syntax</h2>
-    <emu-grammar type="definition">
-      AssignmentExpression[In, Yield, Await] :
-        ConditionalExpression[?In, ?Yield, ?Await]
-        [+Yield] YieldExpression[?In, ?Await]
-        ArrowFunction[?In, ?Yield, ?Await]
-        AsyncArrowFunction[?In, ?Yield, ?Await]
-        LeftHandSideExpression[?Yield, ?Await] `=` AssignmentExpression[?In, ?Yield, ?Await] #assignment
-        LeftHandSideExpression[?Yield, ?Await] AssignmentOperator AssignmentExpression[?In, ?Yield, ?Await]
-        <ins>LeftHandSideExpression[?Yield, ?Await] LogicalAssignmentOperator AssignmentExpression[?In, ?Yield, ?Await]</ins>
+  <h2>Syntax</h2>
+  <emu-grammar type="definition">
+    AssignmentExpression[In, Yield, Await] :
+      ConditionalExpression[?In, ?Yield, ?Await]
+      [+Yield] YieldExpression[?In, ?Await]
+      ArrowFunction[?In, ?Yield, ?Await]
+      AsyncArrowFunction[?In, ?Yield, ?Await]
+      LeftHandSideExpression[?Yield, ?Await] `=` AssignmentExpression[?In, ?Yield, ?Await] #assignment
+      LeftHandSideExpression[?Yield, ?Await] AssignmentOperator AssignmentExpression[?In, ?Yield, ?Await]
+      <ins>LeftHandSideExpression[?Yield, ?Await] LogicalAssignmentOperator AssignmentExpression[?In, ?Yield, ?Await]</ins>
 
-      AssignmentOperator : one of
-        `*=` `/=` `%=` `+=` `-=` `&lt;&lt;=` `&gt;&gt;=` `&gt;&gt;&gt;=` `&amp;=` `^=` `|=` `**=`
+    AssignmentOperator : one of
+      `*=` `/=` `%=` `+=` `-=` `&lt;&lt;=` `&gt;&gt;=` `&gt;&gt;&gt;=` `&amp;=` `^=` `|=` `**=`
 
-      <ins class="block">
-      LogicalAssignmentOperator : one of
-        `&amp;&amp;=` `||=` `??=`
-      </ins>
-    </emu-grammar>
+    <ins class="block">
+    LogicalAssignmentOperator : one of
+      `&amp;&amp;=` `||=` `??=`
+    </ins>
+  </emu-grammar>
 
-    <emu-clause id="sec-assignment-operators-static-semantics-early-errors">
-      <h1>Static Semantics: Early Errors</h1>
-      <emu-grammar>AssignmentExpression : LeftHandSideExpression `=` AssignmentExpression</emu-grammar>
-      <ul>
-        <li>
-          It is a Syntax Error if |LeftHandSideExpression| is either an |ObjectLiteral| or an |ArrayLiteral| and |LeftHandSideExpression| is not covering an |AssignmentPattern|.
-        </li>
-        <li>
-          It is an early Syntax Error if |LeftHandSideExpression| is neither an |ObjectLiteral| nor an |ArrayLiteral| and AssignmentTargetType of |LeftHandSideExpression| is not ~simple~.
-        </li>
-      </ul>
+  <emu-clause id="sec-assignment-operators-static-semantics-early-errors">
+    <h1>Static Semantics: Early Errors</h1>
+    <emu-grammar>AssignmentExpression : LeftHandSideExpression `=` AssignmentExpression</emu-grammar>
+    <ul>
+      <li>
+        It is a Syntax Error if |LeftHandSideExpression| is either an |ObjectLiteral| or an |ArrayLiteral| and |LeftHandSideExpression| is not covering an |AssignmentPattern|.
+      </li>
+      <li>
+        It is an early Syntax Error if |LeftHandSideExpression| is neither an |ObjectLiteral| nor an |ArrayLiteral| and AssignmentTargetType of |LeftHandSideExpression| is not ~simple~.
+      </li>
+    </ul>
 
-      <emu-grammar>AssignmentExpression : LeftHandSideExpression AssignmentOperator AssignmentExpression</emu-grammar>
-      <ul>
-        <li>
-          It is an early Syntax Error if AssignmentTargetType of |LeftHandSideExpression| is not ~simple~.
-        </li>
-      </ul>
+    <emu-grammar>AssignmentExpression : LeftHandSideExpression AssignmentOperator AssignmentExpression</emu-grammar>
+    <ul>
+      <li>
+        It is an early Syntax Error if AssignmentTargetType of |LeftHandSideExpression| is not ~simple~.
+      </li>
+    </ul>
 
-      <ins class="block">
-      <emu-grammar>AssignmentExpression : LeftHandSideExpression LogicalAssignmentOperator AssignmentExpression</emu-grammar>
-      <ul>
-        <li>
-          It is an early Syntax Error if AssignmentTargetType of |LeftHandSideExpression| is not ~simple~.
-        </li>
-      </ul>
-      </ins>
-    </emu-clause>
-
-    <emu-clause id="sec-assignment-operators-static-semantics-isfunctiondefinition">
-      <h1>Static Semantics: IsFunctionDefinition</h1>
-      <emu-see-also-para op="IsFunctionDefinition"></emu-see-also-para>
-      <emu-grammar>
-        AssignmentExpression :
-          ArrowFunction
-          AsyncArrowFunction
-      </emu-grammar>
-      <emu-alg>
-        1. Return *true*.
-      </emu-alg>
-      <emu-grammar>
-        AssignmentExpression :
-          YieldExpression
-          LeftHandSideExpression `=` AssignmentExpression
-          LeftHandSideExpression AssignmentOperator AssignmentExpression
-          <ins>LeftHandSideExpression LogicalAssignmentOperator AssignmentExpression</ins>
-      </emu-grammar>
-      <emu-alg>
-        1. Return *false*.
-      </emu-alg>
-    </emu-clause>
-
-    <emu-clause oldids="sec-assignment-operators-static-semantics-isvalidsimpleassignmenttarget" id="sec-assignment-operators-static-semantics-assignmenttargettype">
-      <h1>Static Semantics: AssignmentTargetType</h1>
-      <emu-see-also-para op="AssignmentTargetType"></emu-see-also-para>
-      <emu-grammar>
-        AssignmentExpression :
-          YieldExpression
-          ArrowFunction
-          AsyncArrowFunction
-          LeftHandSideExpression `=` AssignmentExpression
-          LeftHandSideExpression AssignmentOperator AssignmentExpression
-          <ins>LeftHandSideExpression LogicalAssignmentOperator AssignmentExpression</ins>
-      </emu-grammar>
-      <emu-alg>
-        1. Return ~invalid~.
-      </emu-alg>
-    </emu-clause>
-
-    <emu-clause id="sec-assignment-operators-runtime-semantics-evaluation">
-      <h1>Runtime Semantics: Evaluation</h1>
-      <emu-grammar>AssignmentExpression : LeftHandSideExpression `=` AssignmentExpression</emu-grammar>
-      <emu-alg>
-        1. If |LeftHandSideExpression| is neither an |ObjectLiteral| nor an |ArrayLiteral|, then
-          1. Let _lref_ be the result of evaluating |LeftHandSideExpression|.
-          1. ReturnIfAbrupt(_lref_).
-          1. If IsAnonymousFunctionDefinition(|AssignmentExpression|) and IsIdentifierRef of |LeftHandSideExpression| are both *true*, then
-            1. Let _rval_ be NamedEvaluation of |AssignmentExpression| with argument GetReferencedName(_lref_).
-          1. Else,
-            1. Let _rref_ be the result of evaluating |AssignmentExpression|.
-            1. Let _rval_ be ? GetValue(_rref_).
-          1. Perform ? PutValue(_lref_, _rval_).
-          1. Return _rval_.
-        1. Let _assignmentPattern_ be the |AssignmentPattern| that is covered by |LeftHandSideExpression|.
-        1. Let _rref_ be the result of evaluating |AssignmentExpression|.
-        1. Let _rval_ be ? GetValue(_rref_).
-        1. Perform ? DestructuringAssignmentEvaluation of _assignmentPattern_ using _rval_ as the argument.
-        1. Return _rval_.
-      </emu-alg>
-
-      <emu-grammar>AssignmentExpression : LeftHandSideExpression AssignmentOperator AssignmentExpression</emu-grammar>
-      <emu-alg>
-        1. Let _lref_ be the result of evaluating |LeftHandSideExpression|.
-        1. Let _lval_ be ? GetValue(_lref_).
-        1. Let _rref_ be the result of evaluating |AssignmentExpression|.
-        1. Let _rval_ be ? GetValue(_rref_).
-        1. Let _op_ be the `@` where |AssignmentOperator| is `@=`.
-        1. Let _r_ be the result of applying _op_ to _lval_ and _rval_ as if evaluating the expression _lval_ _op_ _rval_.
-        1. Perform ? PutValue(_lref_, _r_).
-        1. Return _r_.
-      </emu-alg>
-
-      <ins class="block">
-      <emu-grammar>AssignmentExpression : LeftHandSideExpression `&amp;&amp;=` AssignmentExpression</emu-grammar>
-      <emu-alg>
-        1. Let _lref_ be the result of evaluating |LeftHandSideExpression|.
-        1. Let _lval_ be ? GetValue(_lref_).
-        1. Let _lbool_ be ! ToBoolean(_lval_).
-        1. If _lbool_ is *false*, return _lval_.
-        1. If IsAnonymousFunctionDefinition(|AssignmentExpression|) and IsIdentifierRef of |LeftHandSideExpression| are both *true*, then
-          1. Let _rval_ be NamedEvaluation of |AssignmentExpression| with argument GetReferencedName(_lref_).
-        1. Else,
-          1. Let _rref_ be the result of evaluating |AssignmentExpression|.
-          1. Let _rval_ be ? GetValue(_rref_).
-        1. Perform ? PutValue(_lref_, _rval_).
-        1. Return _rval_.
-      </emu-alg>
-      </ins>
-
-      <ins class="block">
-      <emu-grammar>AssignmentExpression : LeftHandSideExpression `||=` AssignmentExpression</emu-grammar>
-      <emu-alg>
-        1. Let _lref_ be the result of evaluating |LeftHandSideExpression|.
-        1. Let _lval_ be ? GetValue(_lref_).
-        1. Let _lbool_ be ! ToBoolean(_lval_).
-        1. If _lbool_ is *true*, return _lval_.
-        1. If IsAnonymousFunctionDefinition(|AssignmentExpression|) and IsIdentifierRef of |LeftHandSideExpression| are both *true*, then
-          1. Let _rval_ be NamedEvaluation of |AssignmentExpression| with argument GetReferencedName(_lref_).
-        1. Else,
-          1. Let _rref_ be the result of evaluating |AssignmentExpression|.
-          1. Let _rval_ be ? GetValue(_rref_).
-        1. Perform ? PutValue(_lref_, _rval_).
-        1. Return _rval_.
-      </emu-alg>
-      </ins>
-
-      <ins class="block">
-      <emu-grammar>AssignmentExpression : LeftHandSideExpression `??=` AssignmentExpression</emu-grammar>
-      <emu-alg>
-        1. Let _lref_ be the result of evaluating |LeftHandSideExpression|.
-        1. Let _lval_ be ? GetValue(_lref_).
-        1. If _lval_ is neither *undefined* nor *null*, return _lval_.
-        1. If IsAnonymousFunctionDefinition(|AssignmentExpression|) and IsIdentifierRef of |LeftHandSideExpression| are both *true*, then
-          1. Let _rval_ be NamedEvaluation of |AssignmentExpression| with argument GetReferencedName(_lref_).
-        1. Else,
-          1. Let _rref_ be the result of evaluating |AssignmentExpression|.
-          1. Let _rval_ be ? GetValue(_rref_).
-        1. Perform ? PutValue(_lref_, _rval_).
-        1. Return _rval_.
-      </emu-alg>
-      </ins>
-      <emu-note>
-        <p>When this expression occurs within strict mode code and the respective GetValue of _lref_ step is reached, it is a runtime error if _lref_ is an unresolvable reference. If it is, a *ReferenceError* exception is thrown. Additionally if the PutValue step is reached, the _lref_ may not be a reference to a data property with the attribute value { [[Writable]]: *false* }, to an accessor property with the attribute value { [[Set]]: *undefined* }, nor to a non-existent property of an object for which the IsExtensible predicate returns the value *false*. In these cases a *TypeError* exception is thrown.</p>
-      </emu-note>
-    </emu-clause>
+    <ins class="block">
+    <emu-grammar>AssignmentExpression : LeftHandSideExpression LogicalAssignmentOperator AssignmentExpression</emu-grammar>
+    <ul>
+      <li>
+        It is an early Syntax Error if AssignmentTargetType of |LeftHandSideExpression| is not ~simple~.
+      </li>
+    </ul>
+    </ins>
   </emu-clause>
+
+  <emu-clause id="sec-assignment-operators-static-semantics-isfunctiondefinition">
+    <h1>Static Semantics: IsFunctionDefinition</h1>
+    <emu-see-also-para op="IsFunctionDefinition"></emu-see-also-para>
+    <emu-grammar>
+      AssignmentExpression :
+        ArrowFunction
+        AsyncArrowFunction
+    </emu-grammar>
+    <emu-alg>
+      1. Return *true*.
+    </emu-alg>
+    <emu-grammar>
+      AssignmentExpression :
+        YieldExpression
+        LeftHandSideExpression `=` AssignmentExpression
+        LeftHandSideExpression AssignmentOperator AssignmentExpression
+        <ins>LeftHandSideExpression LogicalAssignmentOperator AssignmentExpression</ins>
+    </emu-grammar>
+    <emu-alg>
+      1. Return *false*.
+    </emu-alg>
+  </emu-clause>
+
+  <emu-clause oldids="sec-assignment-operators-static-semantics-isvalidsimpleassignmenttarget" id="sec-assignment-operators-static-semantics-assignmenttargettype">
+    <h1>Static Semantics: AssignmentTargetType</h1>
+    <emu-see-also-para op="AssignmentTargetType"></emu-see-also-para>
+    <emu-grammar>
+      AssignmentExpression :
+        YieldExpression
+        ArrowFunction
+        AsyncArrowFunction
+        LeftHandSideExpression `=` AssignmentExpression
+        LeftHandSideExpression AssignmentOperator AssignmentExpression
+        <ins>LeftHandSideExpression LogicalAssignmentOperator AssignmentExpression</ins>
+    </emu-grammar>
+    <emu-alg>
+      1. Return ~invalid~.
+    </emu-alg>
+  </emu-clause>
+
+  <emu-clause id="sec-assignment-operators-runtime-semantics-evaluation">
+    <h1>Runtime Semantics: Evaluation</h1>
+    <emu-grammar>AssignmentExpression : LeftHandSideExpression `=` AssignmentExpression</emu-grammar>
+    <emu-alg>
+      1. If |LeftHandSideExpression| is neither an |ObjectLiteral| nor an |ArrayLiteral|, then
+        1. Let _lref_ be the result of evaluating |LeftHandSideExpression|.
+        1. ReturnIfAbrupt(_lref_).
+        1. If IsAnonymousFunctionDefinition(|AssignmentExpression|) and IsIdentifierRef of |LeftHandSideExpression| are both *true*, then
+          1. Let _rval_ be NamedEvaluation of |AssignmentExpression| with argument GetReferencedName(_lref_).
+        1. Else,
+          1. Let _rref_ be the result of evaluating |AssignmentExpression|.
+          1. Let _rval_ be ? GetValue(_rref_).
+        1. Perform ? PutValue(_lref_, _rval_).
+        1. Return _rval_.
+      1. Let _assignmentPattern_ be the |AssignmentPattern| that is covered by |LeftHandSideExpression|.
+      1. Let _rref_ be the result of evaluating |AssignmentExpression|.
+      1. Let _rval_ be ? GetValue(_rref_).
+      1. Perform ? DestructuringAssignmentEvaluation of _assignmentPattern_ using _rval_ as the argument.
+      1. Return _rval_.
+    </emu-alg>
+
+    <emu-grammar>AssignmentExpression : LeftHandSideExpression AssignmentOperator AssignmentExpression</emu-grammar>
+    <emu-alg>
+      1. Let _lref_ be the result of evaluating |LeftHandSideExpression|.
+      1. Let _lval_ be ? GetValue(_lref_).
+      1. Let _rref_ be the result of evaluating |AssignmentExpression|.
+      1. Let _rval_ be ? GetValue(_rref_).
+      1. Let _op_ be the `@` where |AssignmentOperator| is `@=`.
+      1. Let _r_ be the result of applying _op_ to _lval_ and _rval_ as if evaluating the expression _lval_ _op_ _rval_.
+      1. Perform ? PutValue(_lref_, _r_).
+      1. Return _r_.
+    </emu-alg>
+
+    <ins class="block">
+    <emu-grammar>AssignmentExpression : LeftHandSideExpression `&amp;&amp;=` AssignmentExpression</emu-grammar>
+    <emu-alg>
+      1. Let _lref_ be the result of evaluating |LeftHandSideExpression|.
+      1. Let _lval_ be ? GetValue(_lref_).
+      1. Let _lbool_ be ! ToBoolean(_lval_).
+      1. If _lbool_ is *false*, return _lval_.
+      1. If IsAnonymousFunctionDefinition(|AssignmentExpression|) and IsIdentifierRef of |LeftHandSideExpression| are both *true*, then
+        1. Let _rval_ be NamedEvaluation of |AssignmentExpression| with argument GetReferencedName(_lref_).
+      1. Else,
+        1. Let _rref_ be the result of evaluating |AssignmentExpression|.
+        1. Let _rval_ be ? GetValue(_rref_).
+      1. Perform ? PutValue(_lref_, _rval_).
+      1. Return _rval_.
+    </emu-alg>
+    </ins>
+
+    <ins class="block">
+    <emu-grammar>AssignmentExpression : LeftHandSideExpression `||=` AssignmentExpression</emu-grammar>
+    <emu-alg>
+      1. Let _lref_ be the result of evaluating |LeftHandSideExpression|.
+      1. Let _lval_ be ? GetValue(_lref_).
+      1. Let _lbool_ be ! ToBoolean(_lval_).
+      1. If _lbool_ is *true*, return _lval_.
+      1. If IsAnonymousFunctionDefinition(|AssignmentExpression|) and IsIdentifierRef of |LeftHandSideExpression| are both *true*, then
+        1. Let _rval_ be NamedEvaluation of |AssignmentExpression| with argument GetReferencedName(_lref_).
+      1. Else,
+        1. Let _rref_ be the result of evaluating |AssignmentExpression|.
+        1. Let _rval_ be ? GetValue(_rref_).
+      1. Perform ? PutValue(_lref_, _rval_).
+      1. Return _rval_.
+    </emu-alg>
+    </ins>
+
+    <ins class="block">
+    <emu-grammar>AssignmentExpression : LeftHandSideExpression `??=` AssignmentExpression</emu-grammar>
+    <emu-alg>
+      1. Let _lref_ be the result of evaluating |LeftHandSideExpression|.
+      1. Let _lval_ be ? GetValue(_lref_).
+      1. If _lval_ is neither *undefined* nor *null*, return _lval_.
+      1. If IsAnonymousFunctionDefinition(|AssignmentExpression|) and IsIdentifierRef of |LeftHandSideExpression| are both *true*, then
+        1. Let _rval_ be NamedEvaluation of |AssignmentExpression| with argument GetReferencedName(_lref_).
+      1. Else,
+        1. Let _rref_ be the result of evaluating |AssignmentExpression|.
+        1. Let _rval_ be ? GetValue(_rref_).
+      1. Perform ? PutValue(_lref_, _rval_).
+      1. Return _rval_.
+    </emu-alg>
+    </ins>
+    <emu-note>
+      <p>When this expression occurs within strict mode code and the respective GetValue of _lref_ step is reached, it is a runtime error if _lref_ is an unresolvable reference. If it is, a *ReferenceError* exception is thrown. Additionally if the PutValue step is reached, the _lref_ may not be a reference to a data property with the attribute value { [[Writable]]: *false* }, to an accessor property with the attribute value { [[Set]]: *undefined* }, nor to a non-existent property of an object for which the IsExtensible predicate returns the value *false*. In these cases a *TypeError* exception is thrown.</p>
+    </emu-note>
+  </emu-clause>
+</emu-clause>
