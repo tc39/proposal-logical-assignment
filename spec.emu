@@ -76,15 +76,13 @@ location: https://tc39.es/proposal-logical-assignment
       AsyncArrowFunction[?In, ?Yield, ?Await]
       LeftHandSideExpression[?Yield, ?Await] `=` AssignmentExpression[?In, ?Yield, ?Await] #assignment
       LeftHandSideExpression[?Yield, ?Await] AssignmentOperator AssignmentExpression[?In, ?Yield, ?Await]
-      <ins>LeftHandSideExpression[?Yield, ?Await] LogicalAssignmentOperator AssignmentExpression[?In, ?Yield, ?Await]</ins>
+      <ins>LeftHandSideExpression[?Yield, ?Await] `&amp;&amp;=` AssignmentExpression[?In, ?Yield, ?Await]</ins>
+      <ins>LeftHandSideExpression[?Yield, ?Await] `||=` AssignmentExpression[?In, ?Yield, ?Await]</ins>
+      <ins>LeftHandSideExpression[?Yield, ?Await] `??=` AssignmentExpression[?In, ?Yield, ?Await]</ins>
 
     AssignmentOperator : one of
       `*=` `/=` `%=` `+=` `-=` `&lt;&lt;=` `&gt;&gt;=` `&gt;&gt;&gt;=` `&amp;=` `^=` `|=` `**=`
 
-    <ins class="block">
-    LogicalAssignmentOperator : one of
-      `&amp;&amp;=` `||=` `??=`
-    </ins>
   </emu-grammar>
 
   <emu-clause id="sec-assignment-operators-static-semantics-early-errors">
@@ -99,21 +97,18 @@ location: https://tc39.es/proposal-logical-assignment
       </li>
     </ul>
 
-    <emu-grammar>AssignmentExpression : LeftHandSideExpression AssignmentOperator AssignmentExpression</emu-grammar>
+    <emu-grammar>
+      AssignmentExpression :
+        LeftHandSideExpression AssignmentOperator AssignmentExpression
+        <ins>LeftHandSideExpression `&amp;&amp;=` AssignmentExpression</ins>
+        <ins>LeftHandSideExpression `||=` AssignmentExpression</ins>
+        <ins>LeftHandSideExpression `??=` AssignmentExpression</ins>
+    </emu-grammar>
     <ul>
       <li>
         It is an early Syntax Error if AssignmentTargetType of |LeftHandSideExpression| is not ~simple~.
       </li>
     </ul>
-
-    <ins class="block">
-    <emu-grammar>AssignmentExpression : LeftHandSideExpression LogicalAssignmentOperator AssignmentExpression</emu-grammar>
-    <ul>
-      <li>
-        It is an early Syntax Error if AssignmentTargetType of |LeftHandSideExpression| is not ~simple~.
-      </li>
-    </ul>
-    </ins>
   </emu-clause>
 
   <emu-clause id="sec-assignment-operators-static-semantics-isfunctiondefinition">
@@ -132,7 +127,9 @@ location: https://tc39.es/proposal-logical-assignment
         YieldExpression
         LeftHandSideExpression `=` AssignmentExpression
         LeftHandSideExpression AssignmentOperator AssignmentExpression
-        <ins>LeftHandSideExpression LogicalAssignmentOperator AssignmentExpression</ins>
+        <ins>LeftHandSideExpression `&amp;&amp;=` AssignmentExpression</ins>
+        <ins>LeftHandSideExpression `||=` AssignmentExpression</ins>
+        <ins>LeftHandSideExpression `??=` AssignmentExpression</ins>
     </emu-grammar>
     <emu-alg>
       1. Return *false*.
@@ -149,7 +146,9 @@ location: https://tc39.es/proposal-logical-assignment
         AsyncArrowFunction
         LeftHandSideExpression `=` AssignmentExpression
         LeftHandSideExpression AssignmentOperator AssignmentExpression
-        <ins>LeftHandSideExpression LogicalAssignmentOperator AssignmentExpression</ins>
+        <ins>LeftHandSideExpression `&amp;&amp;=` AssignmentExpression</ins>
+        <ins>LeftHandSideExpression `||=` AssignmentExpression</ins>
+        <ins>LeftHandSideExpression `??=` AssignmentExpression</ins>
     </emu-grammar>
     <emu-alg>
       1. Return ~invalid~.
