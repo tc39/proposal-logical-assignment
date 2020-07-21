@@ -18,17 +18,12 @@ a ?? (a = b);
 
 ## Status
 
-Current [Stage](https://tc39.es/process-document/): 3
+Current [Stage](https://tc39.es/process-document/): 4
 
 ## Champions
 
 - Justin Ridgewell ([@jridgewell](https://github.com/jridgewell/))
 - Hemanth HM ([@hemanth](https://github.com/hemanth/))
-
-### Reviewers for Stage 3
-
-- [x] Kevin Gibbons ([@bakkot](https://github.com/bakkot), [#15](https://github.com/tc39/proposal-logical-assignment/issues/15))
-- [x] Daniel Rosenwasser ([@DanielRosenwasser](https://github.com/DanielRosenwasser), [#20](https://github.com/tc39/proposal-logical-assignment/issues/20))
 
 ## Motivation
 
